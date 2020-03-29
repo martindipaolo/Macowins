@@ -21,10 +21,8 @@ public class Prenda {
         this.estado = nuevoEstado;
     }
 
-    public void imprimir(){
-        System.out.println("Tipo: " + this.tipo);
-        System.out.println("Precio base: " + this.precioBase);
-        System.out.println("Precio final: " + this.precioFinal());
-        System.out.println("***");
+    @Override
+    public String toString(){
+        return "PRENDA\n\tTipo: " + this.tipo + "\n\tPrecio base: " + this.precioBase + "\n\tPrecio final: " + this.precioFinal();
     }
 }
