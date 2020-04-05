@@ -1,0 +1,64 @@
+@startuml
+class Prenda {
+  precioBase : double
+  double precioFinal()
+  TipoPrenda tipo()
+  void cambiarEstado(IEstado nuevoEstado)
+}
+
+enum TipoPrenda {
+  SACO, CAMISA, PANTALON
+}
+
+interface IEstado {
+  double precioFinal(double precioBase)
+}
+
+class Nuevo {
+  double precioFinal(double precioBase)
+}
+
+class Promocion {
+  descuento : double
+  double precioFinal(double precioBase)
+}
+
+class Liquidacion {
+  double precioFinal(double precioBase)
+}
+
+abstract Venta {
+  fecha : LocalDate
+  double totalVenta()
+  int cantidadVendida()
+  void agregarPrenda(Prenda p)
+}
+
+class VentaEfectivo {
+  double totalVenta()  
+}
+
+class VentaTarjeta {
+  cuotas : int
+  coeficiente : double
+  double totalVenta()
+}
+
+class Negocio {
+  ventas : List<Venta>
+  void agregarVenta(Venta v)
+  double gananciaDeUnDia(LocalDate unDia)
+}
+
+
+IEstado <|.. Nuevo
+IEstado <|.. Promocion
+IEstado <|.. Liquidacion
+Prenda o--"1" IEstado
+Prenda --> TipoPrenda
+Venta <|-- VentaEfectivo
+Venta <|-- VentaTarjeta
+Venta o--"1..*" Prenda
+Negocio o--"0..*" Venta
+
+@enduml
