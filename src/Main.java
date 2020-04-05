@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -20,12 +22,10 @@ public class Main {
         v2.agregarPrenda(camisa);
         v2.agregarPrenda(saco2);
 
-        RegistroVentas registro = new RegistroVentas();
-        registro.agregarVenta(v1);
-        registro.agregarVenta(v2);
-        System.out.println(registro);
-
-
+        Negocio negocio = new Negocio();
+        negocio.agregarVenta(v1);
+        negocio.agregarVenta(v2);
+        negocio.imprimirVentasDeUnDia(LocalDate.now());
     }
 }
 

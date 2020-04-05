@@ -43,6 +43,10 @@ abstract class Venta {
         return s;
     }
 
+    public boolean esVentaDelDia(LocalDate dia){
+        return this.getFecha().equals(dia);
+    }
+
     @Override
     public String toString(){
         return "VENTA\nFecha: " + this.fecha + "\nCantidad: " + this.cantidadVendida() + "\nTotal: " + this.totalVenta() + "\nPrendas:\n" + this.imprimirPrendas();
