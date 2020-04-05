@@ -1,6 +1,6 @@
 public class Prenda {
     private TipoPrenda tipo;
-    private IEstado estado;
+    private IEstado estado; // STRATEGY
     private double precioBase;
 
     public Prenda(TipoPrenda tipo, IEstado estado, double precioBase){
@@ -9,6 +9,7 @@ public class Prenda {
         this.precioBase = precioBase;
     }
 
+    // STRATEGY
     public double precioFinal(){
         return estado.precioFinal(precioBase);
     }

@@ -1,15 +1,26 @@
 import java.time.LocalDate;
 import java.util.*;
 
-public class Venta {
+abstract class Venta {
 
     private LocalDate fecha;
-    private ITipoDePago tipo;
     private List<Prenda> prendasVendidas = new ArrayList<Prenda>();
 
-    public Venta(ITipoDePago tipo){
+    public Venta(){
         this.fecha = LocalDate.now();
-        this.tipo = tipo;
+    }
+
+    // TEMPLATE METHOD
+    abstract protected double conRecargo(double importeBase);
+    public double totalVenta(){
+
+        double valorPrendas = 0;
+
+        for (Prenda p : this.prendasVendidas) {
+            valorPrendas += p.precioFinal();
+        }
+
+        return conRecargo(valorPrendas);
     }
 
     public LocalDate getFecha(){
@@ -22,17 +33,6 @@ public class Venta {
 
     public int cantidadVendida(){
         return this.prendasVendidas.size();
-    }
-
-    public double totalVenta(){
-
-        double valorPrendas = 0;
-
-        for (Prenda p : this.prendasVendidas) {
-            valorPrendas += p.precioFinal();
-        }
-
-        return valorPrendas + tipo.recargo(valorPrendas);
     }
 
     private String imprimirPrendas(){
